@@ -28,7 +28,7 @@ const ProfilePage = () => {
           return;
         }
 
-       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile`, config);
+       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/auth/profile`, config);
         
         const userData = res.data.user || res.data;
         setUser(userData);
@@ -49,7 +49,7 @@ const ProfilePage = () => {
     setBtnLoading(true);
     try {
       const config = getAuthConfig();
-      const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile/update`, formData, config);      
+      const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/auth/profile/update`, formData, config);      
 
       if (res.data.success) {
         const updatedUser = res.data.user;
