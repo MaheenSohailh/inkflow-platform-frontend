@@ -28,13 +28,8 @@ const ProfilePage = () => {
           return;
         }
 
-<<<<<<< Updated upstream
        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile`, config);
         
-=======
-        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile`, config);
-
->>>>>>> Stashed changes
         const userData = res.data.user || res.data;
         setUser(userData);
         setFormData({ name: userData.name || '', bio: userData.bio || '' });
@@ -54,12 +49,8 @@ const ProfilePage = () => {
     setBtnLoading(true);
     try {
       const config = getAuthConfig();
-      const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile/update`, formData, config);
-<<<<<<< Updated upstream
-      
-=======
+      const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile/update`, formData, config);      
 
->>>>>>> Stashed changes
       if (res.data.success) {
         const updatedUser = res.data.user;
 
