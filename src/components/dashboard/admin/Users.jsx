@@ -11,9 +11,9 @@ useEffect(() => {
       try {
         setLoading(true); // Loading start
         const token = localStorage.getItem('token');
-        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/users`, {
-        headers: { Authorization: `Bearer ${token}` }
-     });
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/admin/users`, {
+    headers: { Authorization: `Bearer ${token}` }
+});
       console.log("API Response:", res.data); // <--- Yeh line check karein
        setUsers(res.data);
       } catch (err) {
@@ -30,9 +30,9 @@ useEffect(() => {
 
     try {
       const token = localStorage.getItem('token');
-        const res = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/admin/users/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+   const res = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${id}`, {
+    headers: { Authorization: `Bearer ${token}` }
+});
       // Delete hone ke baad list ko update karein (filter karke)
       setUsers(users.filter(user => user._id !== id));
     } catch (err) {
