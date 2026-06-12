@@ -13,8 +13,9 @@ useEffect(() => {
         const token = localStorage.getItem('token');
         const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/admin/users`, {
         headers: { Authorization: `Bearer ${token}` }
-        });
-        setUsers(res.data);
+     });
+      console.log("API Response:", res.data); // <--- Yeh line check karein
+       setUsers(res.data);
       } catch (err) {
         console.error("Error fetching users:", err);
       } finally {
@@ -64,7 +65,7 @@ useEffect(() => {
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
-            {users.length > 0 ? (
+            {Array.isArray(users) && users.length > 0 ? (
               users.map((user) => (
                 <tr key={user._id} className="hover:bg-slate-50 transition-colors">
                   <td className="p-4 text-sm text-slate-700">{user.name || "N/A"}</td>
