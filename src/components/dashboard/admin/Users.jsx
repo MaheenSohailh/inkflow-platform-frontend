@@ -65,7 +65,7 @@ useEffect(() => {
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
-            {users.length > 0 ? (
+                 {Array.isArray(users) && users.length > 0 ? (
               users.map((user) => (
                 <tr key={user._id} className="hover:bg-slate-50 transition-colors">
                   <td className="p-4 text-sm text-slate-700">{user.name || "N/A"}</td>
