@@ -12,11 +12,10 @@ const Dashboard = () => {
         // Login ke waqt token save kiya hoga, usey nikalna hai
         const token = localStorage.getItem('token');
 
-        const res = await axios.get('/api/admin/dashboard-stats', {
-          headers: {
-            Authorization: `Bearer ${token}` // Yahan token bhej rahe hain
-          }
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/dashboard-stats`, {
+          headers: { Authorization: `Bearer ${token}` }
         });
+
         setData(res.data);
         setLoading(false);
       } catch (err) {
@@ -35,7 +34,7 @@ const Dashboard = () => {
       </div>
     );
   }
-  
+
   const stats = [
     { title: 'Total Blogs', value: data.totalBlogs || '0', icon: <FileText className="text-indigo-600" /> },
     { title: 'Active Users', value: data.activeUsers || '0', icon: <Users className="text-emerald-600" /> },
@@ -64,7 +63,7 @@ const Dashboard = () => {
         <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-bold text-slate-900">Recent Published Blogs</h3>
-            {data.recentBlogs.length === 0 && (
+            {data?.recentBlogs?.length === 0 && (
               <button
                 onClick={() => window.location.href = '/admin/create-blog'}
                 className="text-xs font-bold text-indigo-600 hover:text-indigo-800"
@@ -75,7 +74,7 @@ const Dashboard = () => {
           </div>
 
           <div className="space-y-4">
-            {data.recentBlogs && data.recentBlogs.length > 0 ? (
+            {data?.recentBlogs?.length > 0 ? (
               data.recentBlogs.map((blog) => (
                 <div key={blog._id} className="flex items-center justify-between py-2 border-b last:border-0">
                   <span className="text-sm text-slate-600 truncate mr-2">{blog.title}</span>
